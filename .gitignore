@@ -1,0 +1,20 @@
+# Ignore .env file
+.env
+
+#ignore notes
+notes.txt
+
+# Ignore activities folders
+/activities/
+/data_cleansing/activities/
+
+
+#ignore access_tokens.csv
+access_tokens.csv
+
+#no need
+__pycache__/
+
+.DS_Store
+
+token_check_log.csv

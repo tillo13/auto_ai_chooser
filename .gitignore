@@ -9,12 +9,7 @@ notes.txt
 /data_cleansing/activities/
 
 
-#ignore access_tokens.csv
-access_tokens.csv
-
 #no need
 __pycache__/
-
 .DS_Store
-
-token_check_log.csv
+conf

@@ -12,6 +12,7 @@ SITE_HOMEPAGE = "https://gcp-strava.wl.r.appspot.com/"
 # OpenAI API Configurations
 OPENAI_API_KEY_ID = "OPENAI_API_KEY"
 OPENAI_SECRET_KEY = get_secret_version(GCP_PROJECT_ID, OPENAI_API_KEY_ID)
+OPENAI_DEFAULT_MODEL = "gpt-3.5-turbo"
 
 # Google Maps API Configurations
 GOOGLE_MAPS_SECRET_API_ID = "google_maps_api_key"

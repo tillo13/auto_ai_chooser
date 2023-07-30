@@ -2,11 +2,9 @@ from flask import Flask, render_template, request, redirect, url_for
 #import code from existing .py code in the app:
 from chatgpt_utils import get_response_for_user_input
 #from secrets_manager import get_secret_version
-from config import SITE_HOMEPAGE,GCP_PROJECT_ID, OPENAI_SECRET_KEY
+from config import SITE_HOMEPAGE,GCP_PROJECT_ID, OPENAI_SECRET_KEY, OPENAI_DEFAULT_MODEL
 
 app = Flask(__name__)
-
-model_choice ='gpt-3.5-turbo'
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -21,7 +19,7 @@ def result():
     if user_input != 'empty':
         try:
             from chatgpt_utils import get_chatgpt_response
-            gpt_response, chatgpt_time = get_chatgpt_response(user_input, model_choice, OPENAI_SECRET_KEY)
+            gpt_response, chatgpt_time = get_chatgpt_response(user_input, OPENAI_DEFAULT_MODEL, OPENAI_SECRET_KEY)
             user_input += f"\nChatGPT Response: {gpt_response}"
         except Exception as e:
             print(f"Failed to get chatGPT response. Error: {e}")

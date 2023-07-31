@@ -1,11 +1,15 @@
 <!doctype html>
 <html>
     <head>
-        <title>My Flask App</title>
+        <title>OpenAI playground ++ App</title>
     </head>
     <body>
         <form method="POST" action="/">
             <input type="text" name="input_box" id="input_box">
+            <select name="model" id="model">
+                <option value="gpt-4">GPT-4</option>
+                <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
+            </select>
             <button type="submit">Submit</button>
         </form>
     </body>

@@ -1,7 +1,7 @@
-import os
-import time
 import openai
-import tiktoken
+import time
+from openai import OpenAIError
+from tiktoken import Tokenizer, models
 
 def get_chatgpt_response(user_input, model_choice, openai_secret_key):
     start_time = time.time()
@@ -17,11 +17,21 @@ def get_response_for_user_input(user_input, model_choice, openai_secret_key):
         {"role": "user", "content": user_input},
     ]
 
-    response = openai.ChatCompletion.create(
-        model=model_choice,
-        messages=messages,
-        temperature=0.6,
-        max_tokens=500
-    )
+    try:
+        response = openai.ChatCompletion.create(
+            model=model_choice,
+            messages=messages,
+            temperature=0.6,
+            max_tokens=500
+        )
+        
+        # Count tokens using tiktoken
+        tokenizer = Tokenizer(models.Model())
+        user_input_tokens = len(list(tokenizer.encode(user_input)))
+        gpt_response_tokens = len(list(tokenizer.encode(response['choices'][0]['message']['content'])))
+        total_tokens = user_input_tokens + gpt_response_tokens
 
-    return response
+        return response, total_tokens
+    except OpenAIError as e:
+        print(e)
+        return str(e), 0
